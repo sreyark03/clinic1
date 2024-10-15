@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - Clinic Management</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 50px;
+        }
+        .booking-container {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        .booking-container input {
+            padding: 10px;
+            width: 70%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px; /* Space between inputs */
+        }
+        .booking-container button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .booking-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>Booking</h1>
+    </div>
+
+    <div class="container">
+        <div class="booking-container">
+            <h2>Enter Patient Details</h2>
+            <input type="text" id="patientName" placeholder="Enter Patient Name" required>
+            <input type="text" id="phone" placeholder="Enter Phone Number" required>
+            <input type="text" id="mrd" placeholder="Enter MRD Number" required>
+            <button onclick="submitBooking()">NEXT</button>
+        </div>
+    </div>
+
+    <script>
+        function submitBooking() {
+            const patientName = document.getElementById('patientName').value;
+            const phone = document.getElementById('phone').value;
+            const mrd = document.getElementById('mrd').value;
+
+            if (!patientName || !phone || !mrd) {
+                alert('Please fill in all fields.'); // Alert if any field is empty
+            } else {
+                // Log the booking information to the console
+                console.log(`Name: ${patientName}, Phone: ${phone}, MRD: ${mrd}`);
+
+                // Optional: Clear the form after submission
+                document.getElementById('patientName').value = '';
+                document.getElementById('phone').value = '';
+                document.getElementById('mrd').value = '';
+            }
+        }
+    </script>
+
+</body>
+</html>

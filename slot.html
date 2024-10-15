@@ -1,0 +1,132 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Slot Booking</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 50px;
+        }
+        .time-slot-container {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        .time-slot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        .time-slot span {
+            font-size: 18px;
+        }
+        .time-slot button {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .time-slot button:hover {
+            background-color: #45a049;
+        }
+        .time-slot .slots-left {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>Book Your Time Slot</h1>
+    </div>
+
+    <div class="container">
+        <div class="time-slot-container">
+            <h2>Select a Time Slot</h2>
+
+            <!-- Time slot 9:30 - 10:00 -->
+            <div class="time-slot">
+                <span>9:30 AM - 10:00 AM</span>
+                <span class="slots-left" id="slots-left-1">Slots left: 5</span>
+                <button onclick="bookSlot(1)">Book</button>
+            </div>
+
+            <!-- Time slot 10:00 - 10:30 -->
+            <div class="time-slot">
+                <span>10:00 AM - 10:30 AM</span>
+                <span class="slots-left" id="slots-left-2">Slots left: 5</span>
+                <button onclick="bookSlot(2)">Book</button>
+            </div>
+
+            <!-- Time slot 10:30 - 11:00 -->
+            <div class="time-slot">
+                <span>10:30 AM - 11:00 AM</span>
+                <span class="slots-left" id="slots-left-3">Slots left: 5</span>
+                <button onclick="bookSlot(3)">Book</button>
+            </div>
+
+            <!-- Time slot 11:00 - 11:30 -->
+            <div class="time-slot">
+                <span>11:00 AM - 11:30 AM</span>
+                <span class="slots-left" id="slots-left-4">Slots left: 5</span>
+                <button onclick="bookSlot(4)">Book</button>
+            </div>
+
+            <!-- Time slot 11:30 - 12:00 -->
+            <div class="time-slot">
+                <span>11:30 AM - 12:00 PM</span>
+                <span class="slots-left" id="slots-left-5">Slots left: 5</span>
+                <button onclick="bookSlot(5)">Book</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Array to track slots left for each time slot
+        let slots = [5, 5, 5, 5, 5]; // Initial slots available for 5 time slots
+
+        function bookSlot(slotNumber) {
+            if (slots[slotNumber - 1] > 0) {
+                slots[slotNumber - 1]--; // Decrease available slots for the selected slot
+                document.getElementById(`slots-left-${slotNumber}`).innerText = `Slots left: ${slots[slotNumber - 1]}`; // Update display
+
+                if (slots[slotNumber - 1] === 0) {
+                    alert('All slots are booked for this time!'); // Alert when no slots left for the specific slot
+                }
+            } else {
+                alert('No more slots available for this time!'); // Alert if already full
+            }
+        }
+    </script>
+
+</body>
+</html>

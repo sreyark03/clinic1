@@ -1,0 +1,172 @@
+ <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profiles - CARE TRACK</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 50px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 50px;
+        }
+        .search-container {
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        .search-container input {
+            padding: 10px;
+            width: 70%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            margin-bottom: 10px; /* Add space between inputs */
+        }
+        .search-container button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background-color: #45a049;
+        }
+        .doctor-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .doctor-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .doctor-card:hover {
+            background-color: #f0f4f8;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .doctor-card h3 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        .doctor-card p {
+            color: #777;
+        }
+        .doctor-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>CARE TRACK</h1>
+    </div>
+
+    <div class="container">
+        <div class="search-container">
+            <h2>Search Doctor Profiles</h2>
+            <input type="text" id="doctorId" placeholder="Enter Doctor ID">
+            <input type="text" id="specialization" placeholder="Enter specialization (e.g., Cardiology)">
+            <button onclick="searchDoctors()">Search</button>
+        </div>
+
+        <div class="doctor-list" id="doctor-list">
+            <!-- Doctor profiles will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        const doctors = [
+            { id: 1, name: 'Dr. Rajesh Sharma', specialization: 'Cardiology', department: 'Cardiac Surgery', yearsOfService: 15, img: 'https://via.placeholder.com/80' },
+            { id: 2, name: 'Dr. Anjali Patel', specialization: 'Neurology', department: 'Neurosurgery', yearsOfService: 10, img: 'https://via.placeholder.com/80' },
+            { id: 3, name: 'Dr. Priya Gupta', specialization: 'Pediatrics', department: 'General Medicine', yearsOfService: 12, img: 'https://via.placeholder.com/80' },
+            { id: 4, name: 'Dr. Arjun Mehta', specialization: 'Cardiology', department: 'Internal Medicine', yearsOfService: 18, img: 'https://via.placeholder.com/80' },
+            { id: 5, name: 'Dr. Sneha Reddy', specialization: 'Dermatology', department: 'Dermatology', yearsOfService: 8, img: 'https://via.placeholder.com/80' },
+            { id: 6, name: 'Dr. Karan Singh', specialization: 'Orthopedics', department: 'Orthopedic Surgery', yearsOfService: 20, img: 'https://via.placeholder.com/80' },
+            { id: 7, name: 'Dr. Neha Joshi', specialization: 'Oncology', department: 'Oncology', yearsOfService: 25, img: 'https://via.placeholder.com/80' },
+            { id: 8, name: 'Dr. Vikram Rao', specialization: 'Gastroenterology', department: 'Gastroenterology', yearsOfService: 30, img: 'https://via.placeholder.com/80' },
+            { id: 9, name: 'Dr. Aditi Verma', specialization: 'Cardiology', department: 'Cardiac Surgery', yearsOfService: 22, img: 'https://via.placeholder.com/80' },
+            { id: 10, name: 'Dr. Rahul Nair', specialization: 'Psychiatry', department: 'Mental Health', yearsOfService: 5, img: 'https://via.placeholder.com/80' }
+        ];
+
+        window.onload = function() {
+            displayDoctors(doctors); // Show all doctors when the page loads
+        };
+
+        function displayDoctors(doctorArray) {
+            const doctorList = document.getElementById('doctor-list');
+            doctorList.innerHTML = ''; // Clear previous results
+
+            if (doctorArray.length > 0) {
+                doctorArray.forEach(doctor => {
+                    const card = document.createElement('div');
+                    card.className = 'doctor-card';
+                    card.innerHTML = `
+                        <img src="${doctor.img}" alt="Profile Picture">
+                        <h3>${doctor.name}</h3>
+                        <p>Specialization: ${doctor.specialization}</p>
+                        <p>Department: ${doctor.department}</p>
+                        <p>Years of Service: ${doctor.yearsOfService}</p>
+                    `;
+                    card.onclick = function() {
+                        selectDoctor(doctor.id);
+                    };
+                    doctorList.appendChild(card);
+                });
+            } else {
+                doctorList.innerHTML = '<p>No doctors found.</p>';
+            }
+        }
+
+        function searchDoctors() {
+            const doctorId = document.getElementById('doctorId').value;
+            const specialization = document.getElementById('specialization').value.toLowerCase();
+
+            const filteredDoctors = doctors.filter(doctor => 
+                (doctorId && doctor.id == doctorId) ||
+                (specialization && doctor.specialization.toLowerCase().includes(specialization))
+            );
+
+            displayDoctors(filteredDoctors);
+        }
+
+        function selectDoctor(doctorId) {
+            // Redirect to a page for booking or viewing doctor profile
+            window.location.href = `doctorProfile.html?doctorId=${doctorId}`;
+        }
+    </script>
+
+</body>
+</html>
+Changes Made:
+Indian Names: Updated the names of the doctors to common     

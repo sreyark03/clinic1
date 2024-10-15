@@ -1,0 +1,123 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Management - Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 40px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+        }
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .dashboard-header h2 {
+            color: #333;
+            font-size: 28px;
+        }
+        .card-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .card {
+            background-color: white;
+            width: 300px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+        .card p {
+            color: #777;
+            margin-bottom: 20px;
+        }
+        .card button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .card button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>CARE TRACK</h1>
+        <a href="#">Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="dashboard-header">
+            <h2>Welcome to Your Dashboard</h2>
+        </div>
+
+        <div class="card-container">
+            <!-- Patient Details Card -->
+            <div class="card">
+                <h3>Patient Details</h3>
+                <p>View and update your personal information.</p>
+                <button onclick="location.href='patient-details.html'">View Details</button>
+            </div>
+
+            <!-- Book Appointment Card -->
+            <div class="card">
+                <h3>Book Appointment</h3>
+                <p>Schedule an appointment with a doctor.</p>
+                <button onclick="location.href='book-appointment.html'">Book Now</button>
+            </div>
+
+            <!-- Doctor Profiles Card -->
+            <div class="card">
+                <h3>Doctor Profiles</h3>
+                <p>View doctors' profiles and specializations.</p>
+                <button onclick="location.href='doctor-profiles.html'">View Profiles</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
